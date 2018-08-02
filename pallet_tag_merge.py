@@ -84,7 +84,6 @@ def process_tags(ver, pallet_max, stack_sheets, total_rec):
                                 str((pallet.stackdata["leftend"] + 1) - pallet.stackdata["leftstart"])
                                 ])
 
-
             # last Pallet
             pallet = Pallet()
             pallet.set_pallet_data(total_pallets, pallet_max, stack_sheets, last_pallet)
@@ -96,14 +95,12 @@ def process_tags(ver, pallet_max, stack_sheets, total_rec):
 
             for stack in range(1, int((pallet.palletdata["palletstackcnt"] + 1) / 2) + 1):
                 pallet.set_last_pallet_stack_data(palletn, stack, stack_sheets, pallet_max, total_rec)
-                # print("Pallet {0}: Stack {1} ".format(str(total_pallets), str(stack)),
-                #       pallet.stackdata)
+
                 f.writerow(["{0}_P{1}.tab".format(ver, total_pallets),
                             stack, pallet.stackdata["leftstart"], pallet.stackdata["leftend"],
                             pallet.stackdata["rightstart"], pallet.stackdata["rightend"],
                             str((pallet.stackdata["leftend"] + 1) - pallet.stackdata["leftstart"])
                             ])
-
 
         # if the job breaks evenly at a full pallet
         else:
